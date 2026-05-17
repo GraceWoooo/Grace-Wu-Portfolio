@@ -144,3 +144,20 @@ window.addEventListener('scroll', () => {
       ? 'var(--text-1)' : '';
   });
 });
+
+// ---- LIVE PWR STOCK PRICE ----
+async function fetchPWRPrice() {
+  try {
+    const res = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/PWR?interval=1d&range=1d');
+    const data = await res.json();
+    const price = data.chart.result[0].meta.regularMarketPrice;
+    const el = document.getElementById('pwr-price');
+    if (el && price) {
+      el.textContent = '$' + price.toFixed(2);
+    }
+  } catch (e) {
+    const el = document.getElementById('pwr-price');
+    if (el) el.textContent = 'N/A';
+  }
+}
+fetchPWRPrice();
