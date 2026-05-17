@@ -141,7 +141,7 @@ window.addEventListener('scroll', () => {
   });
   navLinks.forEach(l => {
     l.style.color = l.getAttribute('href') === '#' + current
-      ? 'var(--text-1)' : '';
+      ? 'var(--black)' : '';
   });
 });
 
