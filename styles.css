@@ -289,7 +289,7 @@ body.cursor-hover .cursor {
   height: 100vh;
   min-height: 700px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   background: var(--paper);
   overflow: hidden;
 }
@@ -311,8 +311,8 @@ body.cursor-hover .cursor {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding-top: 20rem;
-  padding-bottom: var(--space-lg);
+  padding-top: 6rem;
+  padding-bottom: 2rem;
   width: 100%;
 }
 
