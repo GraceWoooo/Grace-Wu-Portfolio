@@ -672,11 +672,11 @@ body.cursor-hover .cursor {
   margin-bottom: var(--space-lg);
 }
 
-.timeline { position: relative; padding-left: 210px; }
+.timeline { position: relative; padding-left: 160px; }
 .timeline::before {
   content: '';
   position: absolute;
-  left: 182px; top: 8px; bottom: 8px;
+  left: 140px; top: 8px; bottom: 8px;
   width: 1px;
   background: var(--stone-200);
 }
@@ -684,18 +684,14 @@ body.cursor-hover .cursor {
 .timeline-item {
   position: relative;
   padding-bottom: 3.5rem;
-  display: grid;
-  grid-template-columns: 0 1fr;
-  gap: 3rem;
 }
-.timeline-item:last-child { padding-bottom: 0; }
 
 .timeline-left {
   position: absolute;
-  left: -210px;
-  width: 190px;
+  left: -160px;
+  width: 130px;
   text-align: right;
-  padding-right: 2rem;
+  padding-right: 1.5rem;
   padding-top: 0.15rem;
 }
 .tl-period {
