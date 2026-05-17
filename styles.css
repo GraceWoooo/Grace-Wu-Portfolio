@@ -861,6 +861,16 @@ body.cursor-hover .cursor {
   color: var(--stone-400);
   margin-top: 0.25rem;
 }
+.metric-link {
+  text-decoration: none;
+  transition: opacity var(--t-fast);
+}
+.metric-link:hover {
+  opacity: 0.6;
+}
+.metric-link .metric-val {
+  color: var(--ink);
+}
 
 .project-visual {
   display: flex;
