@@ -533,7 +533,7 @@ body.cursor-hover .cursor {
   gap: 1rem;
 }
 .edu-info h4 { font-family: var(--f-display); font-size: 1.05rem; font-weight: 500; color: var(--black); margin-bottom: 0.3rem; }
-.edu-info p { font-size: 0.8rem; color: var(--ink-light); margin: 0.2rem 0; font-weight: 400; }
+.edu-info p { font-size: 0.88rem; color: var(--ink-light); margin: 0.3rem 0; font-weight: 400; }
 .edu-dates { color: var(--mid) !important; font-size: 0.72rem !important; }
 .edu-gpa { font-family: var(--f-display); font-size: 2.2rem; font-weight: 400; color: var(--black); flex-shrink: 0; letter-spacing: -0.02em; }
 
