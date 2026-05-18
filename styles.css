@@ -715,8 +715,15 @@ body.cursor-hover .cursor {
 @media (max-width: 768px) {
   :root { --space-xl: 4.5rem; }
   .section { padding: 4.5rem 0; }
-  .hero-photo-panel { display: none; }
+  .hero::before { display: none; }
   .hero::after { display: none; }
+  .hero-content { 
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 5rem;
+  }
+  .hero-stats { gap: 1.5rem; }
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
   .timeline { padding-left: 0; }
