@@ -407,7 +407,7 @@ body.cursor-hover .cursor {
   display: block;
 }
 .stat-sep { width: 1px; height: 32px; background: var(--rule); }
-
+.hero-stat-mobile { display: none; }
 .hero-scroll-cue {
   position: absolute;
   bottom: 2rem; right: 3rem;
@@ -723,7 +723,6 @@ body.cursor-hover .cursor {
     padding-right: 1.5rem;
     padding-top: 5rem;
   }
-  .hero-stats { gap: 1.5rem; }
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
   .timeline { padding-left: 0; }
