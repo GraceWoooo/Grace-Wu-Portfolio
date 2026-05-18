@@ -532,9 +532,9 @@ body.cursor-hover .cursor {
   background: var(--surface);
   gap: 1rem;
 }
-.edu-info h4 { font-family: var(--f-display); font-size: 1.1rem; font-weight: 500; color: var(--black); margin-bottom: 0.3rem; }
-.edu-info p { font-size: 0.88rem; color: var(--ink-light); margin: 0.3rem 0; font-weight: 400; }
-.edu-dates { color: var(--mid) !important; font-size: 0.72rem !important; }
+.edu-info h4 { font-family: var(--f-display); font-size: 1.15rem; font-weight: 600; color: var(--black); margin-bottom: 0.5rem; }
+.edu-info p { font-size: 0.86rem; color: var(--ink-light); margin: 0.28rem 0; font-weight: 400; }
+.edu-dates { color: var(--mid) !important; font-size: 0.75rem !important; }
 .edu-gpa { font-family: var(--f-display); font-size: 2.2rem; font-weight: 400; color: var(--black); flex-shrink: 0; letter-spacing: -0.02em; }
 
 /* ===================== EXPERIENCE ===================== */
