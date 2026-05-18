@@ -255,13 +255,16 @@ body.cursor-hover .cursor {
 .hero-atmosphere { display: none; }
 
 /* Photo panel replaces the warm block — no ::before needed */
-.hero::after {
+.hero::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--black);
-  z-index: 3;
+  top: 0; right: 0;
+  width: 38vw; height: 100%;
+  background-image: url('headshot.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 0;
 }
 
 .hero-content {
