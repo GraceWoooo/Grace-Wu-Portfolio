@@ -145,3 +145,70 @@ window.addEventListener('scroll', () => {
   });
 });
 
+
+/* ---- DECK MODAL ---- */
+(function initDeckModal() {
+  const overlay   = document.getElementById('deckModal');
+  const closeBtn  = document.getElementById('deckModalClose');
+  const input     = document.getElementById('deckModalInput');
+  const submitBtn = document.getElementById('deckModalSubmit');
+  const errorMsg  = document.getElementById('deckModalError');
+  const titleEl   = document.getElementById('deckModalTitle');
+  const labelEl   = document.getElementById('deckModalLabel');
+  const inputWrap = input.parentElement;
+
+  let currentDeck = '';
+  let currentPassword = '';
+
+  // Open modal when deck-btn clicked
+  document.querySelectorAll('.deck-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      currentDeck     = btn.dataset.deck;
+      currentPassword = btn.dataset.password;
+      titleEl.textContent = btn.dataset.title;
+      labelEl.textContent = 'Pitch Deck';
+      input.value = '';
+      errorMsg.classList.remove('visible');
+      inputWrap.classList.remove('shake');
+      overlay.classList.add('open');
+      setTimeout(() => input.focus(), 300);
+    });
+  });
+
+  // Close modal
+  function closeModal() {
+    overlay.classList.remove('open');
+    input.value = '';
+    errorMsg.classList.remove('visible');
+    inputWrap.classList.remove('shake');
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Submit password
+  function checkPassword() {
+    if (input.value === currentPassword) {
+      closeModal();
+      window.open(currentDeck, '_blank');
+    } else {
+      inputWrap.classList.remove('shake');
+      void inputWrap.offsetWidth; // force reflow
+      inputWrap.classList.add('shake');
+      errorMsg.classList.add('visible');
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  submitBtn.addEventListener('click', checkPassword);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') checkPassword();
+  });
+})();

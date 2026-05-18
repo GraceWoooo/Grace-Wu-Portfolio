@@ -407,7 +407,7 @@ body.cursor-hover .cursor {
   display: block;
 }
 .stat-sep { width: 1px; height: 32px; background: var(--rule); }
-.hero-stat-mobile { display: none; }
+
 .hero-scroll-cue {
   position: absolute;
   bottom: 2rem; right: 3rem;
@@ -487,8 +487,6 @@ body.cursor-hover .cursor {
   padding: 0.4rem 0.9rem;
 }
 
-.about-intro { margin-top: 2rem; }
-
 .about-lead {
   font-family: var(--f-display);
   font-size: 1.35rem;
@@ -515,7 +513,6 @@ body.cursor-hover .cursor {
 .highlight-card p { font-size: 0.72rem; color: var(--mid); margin: 0; }
 
 .about-education { margin-top: 2.5rem; }
-.about-education { margin-bottom: 0.5rem; }
 .edu-header {
   display: flex;
   align-items: center;
@@ -726,6 +723,7 @@ body.cursor-hover .cursor {
     padding-right: 1.5rem;
     padding-top: 5rem;
   }
+  .hero-stats { gap: 1.5rem; }
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
   .timeline { padding-left: 0; }
@@ -749,4 +747,146 @@ body.cursor-hover .cursor {
   .cursor, .cursor-dot { display: none; }
   body { cursor: auto; }
   .btn, .nav-cta, .contact-card { cursor: pointer; }
+}
+
+/* ===================== DECK MODAL ===================== */
+.deck-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--f-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 0.55rem 1rem;
+  margin-top: 1.2rem;
+  cursor: pointer;
+  transition: all var(--t-mid) var(--ease);
+}
+.deck-btn:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.deck-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0.3s;
+}
+.deck-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.deck-modal {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  padding: 3rem;
+  max-width: 440px;
+  width: 90%;
+  position: relative;
+  transform: translateY(16px);
+  transition: transform 0.35s var(--ease);
+}
+.deck-modal-overlay.open .deck-modal {
+  transform: translateY(0);
+}
+.deck-modal-close {
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--mid);
+  transition: color var(--t-fast);
+  padding: 4px;
+}
+.deck-modal-close:hover { color: var(--black); }
+
+.deck-modal-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 0.5rem;
+}
+.deck-modal-title {
+  font-family: var(--f-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--black);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+.deck-modal-sub {
+  font-size: 0.82rem;
+  color: var(--mid);
+  line-height: 1.6;
+  margin-bottom: 1.8rem;
+}
+.deck-modal-input-wrap {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--rule);
+  transition: border-color var(--t-fast);
+}
+.deck-modal-input-wrap:focus-within {
+  border-color: var(--black);
+}
+.deck-modal-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--f-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--black);
+  background: transparent;
+  padding: 0.85rem 1rem;
+  letter-spacing: 0.08em;
+}
+.deck-modal-btn {
+  background: var(--black);
+  border: none;
+  color: var(--white);
+  padding: 0 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background var(--t-fast);
+}
+.deck-modal-btn:hover { background: var(--ink-mid); }
+
+.deck-modal-error {
+  font-size: 0.75rem;
+  color: #c0392b;
+  margin-top: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.deck-modal-error.visible { opacity: 1; }
+
+.deck-modal-input-wrap.shake {
+  animation: shake 0.4s var(--ease);
+  border-color: #c0392b;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
 }
