@@ -527,10 +527,11 @@ body.cursor-hover .cursor {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.4rem;
+  padding: 1rem;
   border: 1px solid var(--rule);
   background: var(--surface);
   gap: 1rem;
+  max-width: 90%;
 }
 .edu-info h4 { font-family: var(--f-display); font-size: 1.15rem; font-weight: 600; color: var(--black); margin-bottom: 0.5rem; }
 .edu-info p { font-size: 0.86rem; color: var(--ink-light); margin: 0.28rem 0; font-weight: 400; }
