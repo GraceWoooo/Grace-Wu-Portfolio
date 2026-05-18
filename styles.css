@@ -526,7 +526,7 @@ body.cursor-hover .cursor {
 .edu-card {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 1.4rem;
   border: 1px solid var(--rule);
   background: var(--surface);
