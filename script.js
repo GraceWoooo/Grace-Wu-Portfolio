@@ -22,10 +22,8 @@ document.addEventListener('mousemove', e => {
 });
 
 (function animateCursor() {
-  curX += (mouseX - curX) * 0.28;
-  curY += (mouseY - curY) * 0.28;
-  cursor.style.left = curX + 'px';
-  cursor.style.top  = curY + 'px';
+  cursorDot.style.left = mouseX + 'px';
+  cursorDot.style.top  = mouseY + 'px';
   requestAnimationFrame(animateCursor);
 })();
 
