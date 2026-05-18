@@ -772,11 +772,10 @@ body.cursor-hover .cursor {
   color: var(--white);
   border-color: var(--black);
 }
-
 .deck-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.45);
   backdrop-filter: blur(6px);
   z-index: 2000;
   display: flex;
@@ -786,10 +785,7 @@ body.cursor-hover .cursor {
   visibility: hidden;
   transition: opacity 0.3s var(--ease), visibility 0.3s;
 }
-.deck-modal-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
+.deck-modal-overlay.open { opacity: 1; visibility: visible; }
 .deck-modal {
   background: var(--white);
   border: 1px solid var(--rule);
@@ -800,9 +796,7 @@ body.cursor-hover .cursor {
   transform: translateY(16px);
   transition: transform 0.35s var(--ease);
 }
-.deck-modal-overlay.open .deck-modal {
-  transform: translateY(0);
-}
+.deck-modal-overlay.open .deck-modal { transform: translateY(0); }
 .deck-modal-close {
   position: absolute;
   top: 1.2rem; right: 1.2rem;
@@ -814,7 +808,6 @@ body.cursor-hover .cursor {
   padding: 4px;
 }
 .deck-modal-close:hover { color: var(--black); }
-
 .deck-modal-label {
   font-size: 0.6rem;
   font-weight: 500;
@@ -839,13 +832,10 @@ body.cursor-hover .cursor {
 }
 .deck-modal-input-wrap {
   display: flex;
-  gap: 0;
   border: 1px solid var(--rule);
   transition: border-color var(--t-fast);
 }
-.deck-modal-input-wrap:focus-within {
-  border-color: var(--black);
-}
+.deck-modal-input-wrap:focus-within { border-color: var(--black); }
 .deck-modal-input {
   flex: 1;
   border: none;
@@ -869,7 +859,6 @@ body.cursor-hover .cursor {
   transition: background var(--t-fast);
 }
 .deck-modal-btn:hover { background: var(--ink-mid); }
-
 .deck-modal-error {
   font-size: 0.75rem;
   color: #c0392b;
@@ -878,13 +867,12 @@ body.cursor-hover .cursor {
   transition: opacity 0.2s;
 }
 .deck-modal-error.visible { opacity: 1; }
-
 .deck-modal-input-wrap.shake {
   animation: shake 0.4s var(--ease);
   border-color: #c0392b;
 }
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
+  0%,100% { transform: translateX(0); }
   20% { transform: translateX(-6px); }
   40% { transform: translateX(6px); }
   60% { transform: translateX(-4px); }
