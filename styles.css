@@ -278,17 +278,16 @@ body.cursor-hover .cursor {
   top: 0; right: 0;
   width: 38vw;
   height: 100%;
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
   overflow: hidden;
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
   z-index: 1;
 }
-.hero-photo-panel-img {
+.hero-photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 20%;
   display: block;
-  filter: grayscale(8%) contrast(1.02);
   transition: transform 0.9s var(--ease);
 }
 .hero-photo-panel:hover .hero-photo-panel-img {
