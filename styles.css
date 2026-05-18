@@ -735,8 +735,15 @@ body.cursor-hover .cursor {
   .project-featured { grid-template-columns: 1fr; }
   .project-visual { display: none; }
   .skill-blocks { grid-template-columns: 1fr; }
-  .hero-stats { gap: 1.8rem; }
+  .hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 2rem;
+   }
   .stat-sep { display: none; }
+  .hero-stat-mobile { display: block; }
   .cursor, .cursor-dot { display: none; }
   body { cursor: auto; }
   .btn, .nav-cta, .contact-card { cursor: pointer; }
