@@ -1,5 +1,6 @@
 /* =====================================================
    GRACE WU — PORTFOLIO
+   Direction: Sharp Editorial · High Contrast · Confident
    Palette: Pure black + White + Warm off-white accent
    Fonts: Cormorant Garamond + DM Sans
    ===================================================== */
@@ -253,49 +254,32 @@ body.cursor-hover .cursor {
 }
 .hero-atmosphere { display: none; }
 
-/* Photo panel replaces the warm block — no ::before needed */
+/* Warm panel — adds life, not grey */
 .hero::before {
   content: '';
   position: absolute;
   top: 0; right: 0;
   width: 38vw; height: 100%;
-  background-image: 
-    linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 20%),
-    url('headshot.jpg');
-  background-size: cover;
-  background-position: center 30%;
+  background: var(--warm);
   clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
   z-index: 0;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--black);
+  z-index: 3;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
+  /* Compact padding so everything fits in one viewport */
   padding-top: 6rem;
   padding-bottom: 2rem;
   width: 100%;
-}
-
-/* Headshot panel — sits inside the warm diagonal */
-.hero-photo-panel {
-  position: absolute;
-  top: 0; right: 0;
-  width: 38vw;
-  height: 100%;
-  overflow: hidden;
-  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
-  z-index: 1;
-}
-.hero-photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  display: block;
-  transition: transform 0.9s var(--ease);
-}
-.hero-photo-panel:hover .hero-photo-panel-img {
-  transform: scale(1.03);
 }
 
 .hero-badge {
@@ -458,7 +442,7 @@ body.cursor-hover .cursor {
 
 /* ===================== ABOUT ===================== */
 .about { background: var(--white); }
-.about-layout { display: grid; grid-template-columns: 280px 1fr; gap: 5rem; align-items: start; }
+.about-layout { display: grid; grid-template-columns: 1.1fr 1.5fr; gap: 5rem; align-items: start; }
 
 .about-portrait { margin-top: 2.5rem; }
 .portrait-frame { position: relative; display: inline-block; }
@@ -512,7 +496,7 @@ body.cursor-hover .cursor {
 .highlight-card h4 { font-size: 0.84rem; font-weight: 600; color: var(--black); margin-bottom: 0.1rem; }
 .highlight-card p { font-size: 0.72rem; color: var(--mid); margin: 0; }
 
-.about-education { margin-top: 2.5rem; }
+.about-education { margin-top: 2rem; }
 .edu-header {
   display: flex;
   align-items: center;
@@ -528,15 +512,15 @@ body.cursor-hover .cursor {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1.4rem;
+  padding: 1rem;
   border: 1px solid var(--rule);
   background: var(--surface);
-  gap: 1rem;
+  gap: 0.75rem;
 }
-.edu-info h4 { font-family: var(--f-display); font-size: 1.05rem; font-weight: 500; color: var(--black); margin-bottom: 0.3rem; }
-.edu-info p { font-size: 0.8rem; color: var(--ink-light); margin: 0.2rem 0; font-weight: 400; }
-.edu-dates { color: var(--mid) !important; font-size: 0.72rem !important; }
-.edu-gpa { font-family: var(--f-display); font-size: 2.2rem; font-weight: 400; color: var(--black); flex-shrink: 0; letter-spacing: -0.02em; }
+.edu-info h4 { font-family: var(--f-display); font-size: 0.95rem; font-weight: 500; color: var(--black); margin-bottom: 0.3rem; }
+.edu-info p { font-size: 0.74rem; color: var(--ink-light); margin: 0.15rem 0; font-weight: 400; }
+.edu-dates { color: var(--mid) !important; font-size: 0.68rem !important; }
+.edu-gpa { font-family: var(--f-display); font-size: 1.8rem; font-weight: 400; color: var(--black); flex-shrink: 0; letter-spacing: -0.02em; }
 
 /* ===================== EXPERIENCE ===================== */
 .experience { background: var(--warm); }
@@ -706,7 +690,7 @@ body.cursor-hover .cursor {
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px) {
   .about-layout, .skills-layout, .contact-layout { grid-template-columns: 1fr; gap: 4rem; }
-  .about-portrait { display: none; }
+  /* portrait stays visible on tablet */
   .timeline { padding-left: 160px; }
   .timeline::before { left: 132px; }
   .timeline-left { left: -160px; width: 140px; }
@@ -717,13 +701,6 @@ body.cursor-hover .cursor {
   .section { padding: 4.5rem 0; }
   .hero::before { display: none; }
   .hero::after { display: none; }
-  .hero-content { 
-    width: 100%;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 5rem;
-  }
-  .hero-stats { gap: 1.5rem; }
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
   .timeline { padding-left: 0; }
@@ -735,15 +712,8 @@ body.cursor-hover .cursor {
   .project-featured { grid-template-columns: 1fr; }
   .project-visual { display: none; }
   .skill-blocks { grid-template-columns: 1fr; }
-  .hero-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 2rem;
-  border-top: 1px solid var(--rule);
-  padding-top: 2rem;
-   }
+  .hero-stats { gap: 1.8rem; }
   .stat-sep { display: none; }
-  .hero-stat-mobile { display: block; }
   .cursor, .cursor-dot { display: none; }
   body { cursor: auto; }
   .btn, .nav-cta, .contact-card { cursor: pointer; }
