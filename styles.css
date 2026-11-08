@@ -893,3 +893,39 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
   60% { transform: translateX(-4px); }
   80% { transform: translateX(4px); }
 }
+
+/* ===================== EMAIL MODAL ===================== */
+.mail-modal { max-height: 92vh; overflow-y: auto; }
+.mail-form { display: flex; flex-direction: column; }
+.mail-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin: 1rem 0 0.4rem;
+}
+.mail-label:first-child { margin-top: 0; }
+.mail-input {
+  font-family: var(--f-body);
+  font-size: 0.9rem;
+  color: var(--black);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  padding: 0.75rem 0.9rem;
+  outline: none;
+  transition: border-color var(--t-fast);
+}
+.mail-input:focus { border-color: var(--black); }
+.mail-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+.mail-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.mail-send { align-self: flex-start; margin-top: 1.5rem; }
+.mail-send:disabled { opacity: 0.55; }
+.mail-status { font-size: 0.78rem; line-height: 1.6; color: var(--mid); margin-top: 0.9rem; min-height: 1.25rem; }
+.mail-status.ok { color: #3a7d44; }
+.mail-status.err { color: #c0392b; }
+.mail-status a { text-decoration: underline; }
+@media (max-width: 480px) {
+  .mail-modal { padding: 2.2rem 1.5rem; }
+}

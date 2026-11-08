@@ -743,7 +743,7 @@
           </div>
         </div>
         <div class="contact-right reveal-up" style="--delay:0.15s">
-          <a href="mailto:grace.siyu.wu@gmail.com" class="contact-card">
+          <a href="mailto:grace.siyu.wu@gmail.com" class="contact-card" id="emailCard">
             <div class="contact-card-icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M2 8l9 6 9-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
             </div>
@@ -824,6 +824,32 @@
         </button>
       </div>
       <p class="deck-modal-error" id="deckModalError">Incorrect password. Try again.</p>
+    </div>
+  </div>
+
+  <!-- ===================== EMAIL MODAL ===================== -->
+  <div class="deck-modal-overlay" id="mailModal" role="dialog" aria-modal="true" aria-labelledby="mailModalTitle">
+    <div class="deck-modal mail-modal">
+      <button class="deck-modal-close" id="mailModalClose" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="deck-modal-label">Email</div>
+      <h3 class="deck-modal-title" id="mailModalTitle">Send me a message</h3>
+      <p class="deck-modal-sub">It goes straight to my inbox, and I'll reply to the email you leave here.</p>
+      <form class="mail-form" id="mailForm">
+        <label class="mail-label" for="mailName">Name</label>
+        <input class="mail-input" id="mailName" name="name" type="text" autocomplete="name" required>
+        <label class="mail-label" for="mailEmail">Your email</label>
+        <input class="mail-input" id="mailEmail" name="email" type="email" autocomplete="email" required>
+        <label class="mail-label" for="mailMessage">Message</label>
+        <textarea class="mail-input mail-textarea" id="mailMessage" name="message" rows="5" required></textarea>
+        <input class="mail-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="btn btn-primary mail-send" id="mailSend">
+          <span>Send</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="mail-status" id="mailStatus" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 

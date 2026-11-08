@@ -210,3 +210,72 @@ window.addEventListener('scroll', () => {
     if (e.key === 'Enter') checkPassword();
   });
 })();
+
+/* ---- EMAIL MODAL (sends through FormSubmit) ---- */
+(function initMailModal() {
+  const card    = document.getElementById('emailCard');
+  const overlay = document.getElementById('mailModal');
+  if (!card || !overlay) return;
+  const form     = document.getElementById('mailForm');
+  const closeBtn = document.getElementById('mailModalClose');
+  const sendBtn  = document.getElementById('mailSend');
+  const status   = document.getElementById('mailStatus');
+  const ADDRESS  = 'grace.siyu.wu@gmail.com';
+  const fallback = 'You can also email me directly at <a href="mailto:' + ADDRESS + '">' + ADDRESS + '</a>.';
+
+  function setStatus(kind, html) {
+    status.className = 'mail-status' + (kind ? ' ' + kind : '');
+    status.innerHTML = html;
+  }
+
+  function openModal(e) {
+    e.preventDefault();
+    setStatus('', '');
+    overlay.classList.add('open');
+    setTimeout(() => document.getElementById('mailName').focus(), 300);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+  }
+
+  card.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.elements._honey.value) return; // filled in by a bot
+    const data = Object.fromEntries(new FormData(form));
+    data._replyto  = data.email;
+    data._subject  = 'Portfolio message from ' + data.name;
+    data._template = 'table';
+    sendBtn.disabled = true;
+    setStatus('', 'Sending...');
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/' + ADDRESS, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && String(json.success) === 'true') {
+        form.reset();
+        setStatus('ok', "Sent! I'll get back to you soon.");
+      } else if (/activ/i.test(json.message || '')) {
+        setStatus('err', "This form isn't switched on yet. " + fallback);
+      } else {
+        throw new Error(json.message || 'HTTP ' + res.status);
+      }
+    } catch (err) {
+      setStatus('err', "That didn't go through. " + fallback);
+    } finally {
+      sendBtn.disabled = false;
+    }
+  });
+})();
