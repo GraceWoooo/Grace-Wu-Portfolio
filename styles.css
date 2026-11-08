@@ -752,11 +752,12 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
 }
 
 /* ===================== DECK MODAL ===================== */
-.deck-btn {
+.deck-btn, .guide-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--f-body);
+  line-height: normal;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -769,7 +770,7 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
   cursor: pointer;
   transition: all var(--t-mid) var(--ease);
 }
-.deck-btn:hover {
+.deck-btn:hover, .guide-btn:hover {
   background: var(--black);
   color: var(--white);
   border-color: var(--black);
