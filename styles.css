@@ -358,7 +358,7 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
   color: var(--ink);
   line-height: 1.75;
   margin-bottom: 1.8rem;
-  max-width: 400px;
+  max-width: 430px;
 }
 
 .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
@@ -382,15 +382,16 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
 .btn-outline:hover { border-color: var(--black); background: var(--black); color: var(--white); }
 
 .hero-stats {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, auto);   /* four stats in one row */
+  gap: 0 2.2rem;
+  align-items: start;
   padding-top: 2rem;
   border-top: 1px solid var(--black);
-  max-width: 580px;
+  max-width: 640px;
 }
 .stat-value {
+  white-space: nowrap;
   display: block;
   font-family: var(--f-display);
   font-size: 2.5rem;
@@ -401,6 +402,8 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
   font-feature-settings: var(--nums);
 }
 .stat-label {
+  max-width: 9.5em;
+  line-height: 1.5;
   font-size: var(--t-label);
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -409,8 +412,6 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
   margin-top: 0.3rem;
   display: block;
 }
-.stat-sep { width: 1px; height: 32px; background: var(--black); }
-.hero-stat-mobile { display: none; }
 .hero-scroll-cue {
   position: absolute;
   bottom: 2rem; right: 3rem;
@@ -546,7 +547,7 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
 /* ===================== EXPERIENCE ===================== */
 .experience { background: var(--white); border-top: 1.5px solid var(--black); border-bottom: 1.5px solid var(--black); }
 
-.section-header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5rem; }
+.section-header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
 
 .timeline { position: relative; padding-left: 160px; }
 .timeline::before {
@@ -587,6 +588,26 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
 .tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .tag { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.08em; color: var(--black); background: var(--white); border: 1px solid var(--black); padding: 0.22rem 0.7rem; }
 .tl-prior-role { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; color: var(--grey); line-height: 1.6; margin: -0.25rem 0 1rem; }
+
+/* Group headings: Consulting / Work / Leadership / Earlier */
+.tl-group, .tl-earlier > summary {
+  font-family: var(--f-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--black);
+  border-top: 1.5px solid var(--black);
+  padding-top: 1rem;
+  margin: 4.5rem 0 2.5rem;
+}
+.tl-group:first-of-type { margin-top: 0; }
+.tl-group span, .tl-earlier > summary span { color: var(--grey); font-weight: 500; margin-left: 0.4rem; }
+.tl-earlier > summary { position: relative; cursor: pointer; list-style: none; margin-bottom: 0; padding-bottom: 0.75rem; }
+.tl-earlier > summary::-webkit-details-marker { display: none; }
+.tl-earlier > summary::after { content: '+'; position: absolute; right: 0; font-size: 1.1rem; letter-spacing: 0; line-height: 1; }
+.tl-earlier[open] > summary::after { content: '–'; }
+.tl-earlier[open] > summary { margin-bottom: 2.5rem; }
 
 /* ===================== PROJECTS ===================== */
 .projects { background: var(--white); }
@@ -743,17 +764,9 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
   .project-featured { grid-template-columns: 1fr; }
   .project-visual { display: none; }
   .skill-row { grid-template-columns: 1fr; gap: 0.9rem; }
-  .hero-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 2rem;
-  border-top: 1px solid var(--line);
-  padding-top: 2rem;
-   }
-  .stat-sep { display: none; }
+  .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
   .hero-scroll-cue { display: none; }
   .stat-value { font-size: 2.2rem; }
-  .hero-stat-mobile { display: block; }
   .cursor, .cursor-dot { display: none; }
   body { cursor: auto; }
   .btn, .nav-cta, .contact-card { cursor: pointer; }
