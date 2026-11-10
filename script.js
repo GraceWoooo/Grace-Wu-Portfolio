@@ -126,8 +126,8 @@ function createModal(overlay, { onClose } = {}) {
       .filter(el => el.offsetParent !== null);
   }
 
-  function open(firstFocus) {
-    opener = document.activeElement;
+  function open(firstFocus, openedBy) {
+    opener = openedBy || document.activeElement;
     overlay.classList.add('open');
     document.body.classList.add('modal-open');
     setTimeout(() => (firstFocus || focusable()[0]).focus(), 100);
@@ -181,7 +181,7 @@ function createModal(overlay, { onClose } = {}) {
       currentPassword = btn.dataset.password;
       titleEl.textContent = btn.dataset.title;
       reset();
-      modal.open(input);
+      modal.open(input, btn);
     });
   });
 
@@ -225,7 +225,7 @@ function createModal(overlay, { onClose } = {}) {
   card.addEventListener('click', e => {
     e.preventDefault();
     setStatus('', '');
-    modal.open(document.getElementById('mailName'));
+    modal.open(document.getElementById('mailName'), card);
   });
   document.getElementById('mailModalClose').addEventListener('click', modal.close);
 

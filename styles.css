@@ -438,6 +438,7 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
 }
 .edu-card {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
@@ -449,7 +450,7 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
 .edu-info h3 { font-family: var(--f-display); font-size: 1.15rem; font-weight: 600; color: var(--black); margin-bottom: 0.5rem; }
 .edu-info p { font-size: 0.86rem; color: var(--ink); margin: 0.28rem 0; font-weight: 400; }
 .edu-info .edu-dates { color: var(--grey); font-size: 0.75rem; margin-top: 0.6rem; }
-.edu-gpa { font-family: var(--f-display); font-size: 2.2rem; font-weight: 600; color: var(--black); flex-shrink: 0; letter-spacing: -0.02em; font-feature-settings: var(--nums); }
+.edu-gpa { align-self: flex-end; font-family: var(--f-display); font-size: 2.2rem; font-weight: 600; color: var(--black); flex-shrink: 0; letter-spacing: -0.02em; font-feature-settings: var(--nums); }
 
 /* ===================== EXPERIENCE ===================== */
 .experience { background: var(--white); border-top: 1.5px solid var(--black); border-bottom: 1.5px solid var(--black); }
@@ -652,12 +653,7 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
   .section { padding: 4.5rem 0; }
   .hero { height: auto; min-height: 100vh; min-height: 100svh; }   /* grow instead of clipping the stats */
   .hero::before { display: none; }
-  .hero-content { 
-    width: 100%;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 5rem;
-  }
+  .hero-content { padding-top: 5rem; }   /* side padding comes from .container, so it lines up with the logo */
   .timeline { padding-left: 0; }
   .timeline::before { display: none; }
   .timeline-left { position: static; width: auto; text-align: left; padding-right: 0; margin-bottom: 0.4rem; }
