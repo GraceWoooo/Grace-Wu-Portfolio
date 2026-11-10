@@ -410,20 +410,6 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
 .about-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
 .about-right p { font-size: 0.95rem; color: var(--ink); margin-bottom: 1rem; line-height: 1.9; font-weight: 400; }
 
-.about-highlights { margin: 2.5rem 0; border-top: 1px solid var(--line-soft); }
-.highlight-card {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--line-soft);
-  transition: padding-left var(--t-mid) var(--ease);
-}
-.highlight-card:hover { padding-left: 0.5rem; }
-.highlight-icon { width: 34px; height: 34px; flex-shrink: 0; display: grid; place-items: center; color: var(--grey); }
-.highlight-card h3 { font-size: 0.84rem; font-weight: 600; color: var(--black); margin-bottom: 0.1rem; }
-.highlight-card p { font-size: 0.72rem; color: var(--grey); margin: 0; }
-
 .about-education { margin-top: 1.5rem; }
 .edu-header {
   display: flex;
