@@ -1,102 +1,39 @@
-/* ---- LOADER ---- */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('done');
-    document.body.style.overflow = '';
-    initReveal();
-  }, 1600);
-});
+/* =====================================================
+   GRACE WU — PORTFOLIO
+   Sections in this file:
+     1. Loader
+     2. Scroll reveal
+     3. Custom cursor (desktop only)
+     4. Nav: scrolled state + current section
+     5. Mobile menu
+     6. Modal helper (focus trap, Esc, scroll lock)
+     7. Pitch deck password modal
+     8. Email modal (sends through FormSubmit)
+   ===================================================== */
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---- 1. LOADER ---- */
+/* Shows "GW" briefly, then reveals the page. It no longer waits for
+   every image to finish downloading. */
+const loader = document.getElementById('loader');
 document.body.style.overflow = 'hidden';
+setTimeout(() => {
+  loader.classList.add('done');
+  document.body.style.overflow = '';
+  initReveal();
+}, reduceMotion ? 0 : 800);
 
-/* ---- CUSTOM CURSOR ---- */
-const cursor    = document.getElementById('cursor');
-const cursorDot = document.getElementById('cursor-dot');
-let mouseX = 0, mouseY = 0;
-let curX = 0, curY = 0;
-
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursorDot.style.left = mouseX + 'px';
-  cursorDot.style.top  = mouseY + 'px';
-});
-
-(function animateCursor() {
-  cursorDot.style.left = mouseX + 'px';
-  cursorDot.style.top  = mouseY + 'px';
-  requestAnimationFrame(animateCursor);
-})();
-
-document.querySelectorAll('a, button, .project-card, .contact-card, .highlight-card').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-});
-
-/* ---- STICKY NAV ---- */
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-/* ---- MOBILE MENU ---- */
-const hamburger  = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
-});
-
-/* ---- STARFIELD CANVAS ---- */
-(function initStarfield() {
-  const canvas = document.getElementById('starfield');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars = [];
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  for (let i = 0; i < 180; i++) {
-    stars.push({
-      x: Math.random() * 1920,
-      y: Math.random() * 1080,
-      r: Math.random() * 0.9 + 0.1,
-      a: Math.random(),
-      speed: Math.random() * 0.003 + 0.001,
-      pulse: Math.random() * Math.PI * 2
-    });
-  }
-
-  function draw(t) {
-    ctx.clearRect(0, 0, W, H);
-    stars.forEach(s => {
-      s.pulse += s.speed;
-      const alpha = (Math.sin(s.pulse) * 0.4 + 0.6) * 0.5;
-      ctx.beginPath();
-      ctx.arc(
-        (s.x / 1920) * W,
-        (s.y / 1080) * H,
-        s.r, 0, Math.PI * 2
-      );
-      ctx.fillStyle = `rgba(148, 175, 212, ${alpha})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-  requestAnimationFrame(draw);
-})();
-
-/* ---- SCROLL REVEAL ---- */
+/* ---- 2. SCROLL REVEAL ---- */
 function initReveal() {
   const revealEls = document.querySelectorAll('.reveal-up, .reveal-fade, .reveal-line');
 
-  const obs = new IntersectionObserver((entries) => {
+  // Wrap the hero name lines so they can slide up
+  document.querySelectorAll('.reveal-line').forEach(el => {
+    el.innerHTML = `<span class="reveal-line-inner">${el.innerHTML}</span>`;
+  });
+
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('in-view');
@@ -105,99 +42,156 @@ function initReveal() {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  revealEls.forEach(el => {
-    obs.observe(el);
-    // Wrap hero lines for animation
-    if (el.classList.contains('reveal-line')) {
-      const text = el.innerHTML;
-      el.innerHTML = `<span class="reveal-line-inner">${text}</span>`;
-    }
-  });
+  revealEls.forEach(el => obs.observe(el));
 
-  // Trigger hero elements immediately
-  document.querySelectorAll('.hero .reveal-fade, .hero .reveal-line').forEach(el => {
-    el.classList.add('in-view');
+  // Hero elements show straight away
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.hero .reveal-fade, .hero .reveal-line').forEach(el => {
+      el.classList.add('in-view');
+    });
   });
 }
 
-/* ---- SMOOTH SCROLL ---- */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
+/* ---- 3. CUSTOM CURSOR (desktop only) ---- */
+const cursorDot = document.getElementById('cursor-dot');
+if (cursorDot && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.addEventListener('mousemove', e => {
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top  = e.clientY + 'px';
+  }, { passive: true });
 
-/* ---- ACTIVE NAV LINK ---- */
-const sections = document.querySelectorAll('section[id]');
-const navLinks  = document.querySelectorAll('.nav-link');
-window.addEventListener('scroll', () => {
+  document.querySelectorAll('a, button, summary, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
+
+/* ---- 4. NAV: SCROLLED STATE + CURRENT SECTION ---- */
+const header   = document.getElementById('header');
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+let navTicking = false;
+
+function updateNav() {
+  navTicking = false;
+  header.classList.toggle('scrolled', window.scrollY > 40);
+
   let current = '';
   sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    if (window.scrollY >= s.offsetTop - 140) current = s.id;
   });
-  navLinks.forEach(l => {
-    l.style.color = l.getAttribute('href') === '#' + current
-      ? 'var(--black)' : '';
+  navLinks.forEach(link => {
+    const isCurrent = link.getAttribute('href') === '#' + current;
+    link.classList.toggle('active', isCurrent);
+    if (isCurrent) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
   });
+}
+window.addEventListener('scroll', () => {
+  if (!navTicking) { navTicking = true; requestAnimationFrame(updateNav); }
+}, { passive: true });
+updateNav();
+
+/* ---- 5. MOBILE MENU ---- */
+const hamburger = document.getElementById('hamburger');
+
+function setMenu(open) {
+  document.body.classList.toggle('menu-open', open);
+  hamburger.setAttribute('aria-expanded', String(open));
+  hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+hamburger.addEventListener('click', () => {
+  setMenu(!document.body.classList.contains('menu-open'));
+});
+navLinks.forEach(link => link.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
+    setMenu(false);
+    hamburger.focus();
+  }
+});
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) setMenu(false);
 });
 
+/* ---- 6. MODAL HELPER ---- */
+/* Shared by both modals: keeps Tab inside the modal, closes on Esc or a
+   click outside, stops the page scrolling behind it, and puts focus back
+   on the button that opened it. */
+function createModal(overlay, { onClose } = {}) {
+  let opener = null;
 
-/* ---- DECK MODAL ---- */
+  function focusable() {
+    return [...overlay.querySelectorAll('a[href], button:not([disabled]), input:not([tabindex="-1"]), textarea')]
+      .filter(el => el.offsetParent !== null);
+  }
+
+  function open(firstFocus) {
+    opener = document.activeElement;
+    overlay.classList.add('open');
+    document.body.classList.add('modal-open');
+    setTimeout(() => (firstFocus || focusable()[0]).focus(), 100);
+  }
+
+  function close() {
+    if (!overlay.classList.contains('open')) return;
+    overlay.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (onClose) onClose();
+    if (opener) opener.focus();
+  }
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key !== 'Tab') return;
+    const items = focusable();
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  return { open, close };
+}
+
+/* ---- 7. PITCH DECK PASSWORD MODAL ---- */
+/* Note: the passwords live in index.html (data-password on each button),
+   so this keeps casual visitors out but is not real security. */
 (function initDeckModal() {
   const overlay   = document.getElementById('deckModal');
-  const closeBtn  = document.getElementById('deckModalClose');
   const input     = document.getElementById('deckModalInput');
-  const submitBtn = document.getElementById('deckModalSubmit');
   const errorMsg  = document.getElementById('deckModalError');
   const titleEl   = document.getElementById('deckModalTitle');
-  const labelEl   = document.getElementById('deckModalLabel');
   const inputWrap = input.parentElement;
 
   let currentDeck = '';
   let currentPassword = '';
 
-  // Open modal when deck-btn clicked
-  document.querySelectorAll('.deck-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentDeck     = btn.dataset.deck;
-      currentPassword = btn.dataset.password;
-      titleEl.textContent = btn.dataset.title;
-      labelEl.textContent = 'Pitch Deck';
-      input.value = '';
-      errorMsg.classList.remove('visible');
-      inputWrap.classList.remove('shake');
-      overlay.classList.add('open');
-      setTimeout(() => input.focus(), 300);
-    });
-  });
-
-  // Close modal
-  function closeModal() {
-    overlay.classList.remove('open');
+  function reset() {
     input.value = '';
     errorMsg.classList.remove('visible');
     inputWrap.classList.remove('shake');
   }
 
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+  const modal = createModal(overlay, { onClose: reset });
+
+  document.querySelectorAll('.deck-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentDeck     = btn.dataset.deck;
+      currentPassword = btn.dataset.password;
+      titleEl.textContent = btn.dataset.title;
+      reset();
+      modal.open(input);
+    });
   });
 
-  // Submit password
   function checkPassword() {
     if (input.value === currentPassword) {
-      closeModal();
+      modal.close();
       window.open(currentDeck, '_blank');
     } else {
       inputWrap.classList.remove('shake');
-      void inputWrap.offsetWidth; // force reflow
+      void inputWrap.offsetWidth; // restart the shake animation
       inputWrap.classList.add('shake');
       errorMsg.classList.add('visible');
       input.value = '';
@@ -205,50 +199,37 @@ window.addEventListener('scroll', () => {
     }
   }
 
-  submitBtn.addEventListener('click', checkPassword);
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') checkPassword();
-  });
+  document.getElementById('deckModalClose').addEventListener('click', modal.close);
+  document.getElementById('deckModalSubmit').addEventListener('click', checkPassword);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
 })();
 
-/* ---- EMAIL MODAL (sends through FormSubmit) ---- */
+/* ---- 8. EMAIL MODAL (sends through FormSubmit) ---- */
 (function initMailModal() {
   const card    = document.getElementById('emailCard');
   const overlay = document.getElementById('mailModal');
   if (!card || !overlay) return;
-  const form     = document.getElementById('mailForm');
-  const closeBtn = document.getElementById('mailModalClose');
-  const sendBtn  = document.getElementById('mailSend');
-  const status   = document.getElementById('mailStatus');
-  const ADDRESS  = 'grace.siyu.wu@gmail.com';
+  const form    = document.getElementById('mailForm');
+  const sendBtn = document.getElementById('mailSend');
+  const status  = document.getElementById('mailStatus');
+  const ADDRESS = 'grace.siyu.wu@gmail.com';
   const fallback = 'You can also email me directly at <a href="mailto:' + ADDRESS + '">' + ADDRESS + '</a>.';
+
+  const modal = createModal(overlay);
 
   function setStatus(kind, html) {
     status.className = 'mail-status' + (kind ? ' ' + kind : '');
     status.innerHTML = html;
   }
 
-  function openModal(e) {
+  card.addEventListener('click', e => {
     e.preventDefault();
     setStatus('', '');
-    overlay.classList.add('open');
-    setTimeout(() => document.getElementById('mailName').focus(), 300);
-  }
-
-  function closeModal() {
-    overlay.classList.remove('open');
-  }
-
-  card.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
+    modal.open(document.getElementById('mailName'));
   });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
-  });
+  document.getElementById('mailModalClose').addEventListener('click', modal.close);
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     if (form.elements._honey.value) return; // filled in by a bot
     const data = Object.fromEntries(new FormData(form));
