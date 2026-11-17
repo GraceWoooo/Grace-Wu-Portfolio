@@ -541,7 +541,7 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
 .project-featured:hover { background: var(--hover); }
 .project-featured .project-card-inner { padding: 3rem; }
 
-.project-number { font-family: var(--f-display); font-size: 0.7rem; font-weight: 400; color: var(--grey); letter-spacing: 0.15em; margin-bottom: 1.2rem; }
+.project-number { font-family: var(--f-display); font-size: 0.7rem; font-weight: 400; color: var(--grey); letter-spacing: 0.15em; margin-bottom: 1.2rem; font-feature-settings: var(--nums); }
 .project-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; }
 .project-category { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); }
 .project-badge { font-size: 0.62rem; font-weight: 500; padding: 0.22rem 0.75rem; letter-spacing: 0.06em; }
