@@ -504,9 +504,9 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 /* Group headings: Consulting / Work / Leadership / Earlier */
 .tl-group, .tl-earlier > summary {
   font-family: var(--f-body);
-  font-size: 0.72rem;
+  font-size: 0.85rem;   /* a step above the company names (0.68rem) */
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--black);
   border-top: 1.5px solid var(--black);
