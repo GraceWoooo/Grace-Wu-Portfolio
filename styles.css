@@ -14,12 +14,12 @@
   --accent:     #000000;   /* small dots. Change to #7a1f1f for oxblood touches */
   --ok:         #2f6f3a;   /* "available" badge */
   --ok-line:    #bfdcc3;
-  --ok-bg:      var(--ok-bg);
+  --ok-bg:      #f0faf1;
   --error:      #b3261e;   /* wrong password, failed send */
   --glass:      rgba(255, 255, 255, 0.96);  /* nav bar after scrolling */
   --wash:       rgba(255, 255, 255, 0.75);  /* fade at the top of the headshot */
   --wash-clear: rgba(255, 255, 255, 0);
-  --overlay:    var(--overlay);         /* behind modals */
+  --overlay:    rgba(0, 0, 0, 0.5);    /* behind modals */
 
   /* ---- Type ---- */
   --f-display: 'Cormorant Garamond', Georgia, serif;
