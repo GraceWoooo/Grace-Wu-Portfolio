@@ -58,7 +58,12 @@ if (cursorDot && window.matchMedia('(hover: hover) and (pointer: fine)').matches
   document.addEventListener('mousemove', e => {
     cursorDot.style.left = e.clientX + 'px';
     cursorDot.style.top  = e.clientY + 'px';
+    cursorDot.classList.add('visible');
   }, { passive: true });
+  // Hide it when the mouse leaves the window, so it doesn't sit frozen at the edge
+  document.addEventListener('mouseout', e => {
+    if (!e.relatedTarget) cursorDot.classList.remove('visible');
+  });
 
   document.querySelectorAll('a, button, summary, .project-card').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
