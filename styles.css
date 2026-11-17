@@ -695,7 +695,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   .hero-actions .btn { flex: 1 1 100%; justify-content: center; }   /* two buttons, same width */
 }
 
-/* ===================== DECK MODAL ===================== */
+/* ===================== DECK + GUIDE BUTTONS, POP-UP BASE ===================== */
 .deck-btn, .guide-btn {
   display: inline-flex;
   align-items: center;
@@ -784,60 +784,6 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   line-height: 1.6;
   margin-bottom: 1.8rem;
 }
-.deck-modal-input-wrap {
-  display: flex;
-  gap: 0;
-  border: 1px solid var(--line);
-  transition: border-color var(--t-fast);
-}
-.deck-modal-input-wrap:focus-within {
-  border-color: var(--black);
-}
-.deck-modal-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-family: var(--f-body);
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: var(--black);
-  background: transparent;
-  padding: 0.85rem 1rem;
-  letter-spacing: 0.08em;
-}
-.deck-modal-btn {
-  background: var(--black);
-  border: none;
-  color: var(--white);
-  padding: 0 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background var(--t-fast);
-}
-.deck-modal-btn:hover { background: var(--black); }
-
-.deck-modal-error {
-  font-size: 0.75rem;
-  color: var(--error);
-  margin-top: 0.75rem;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.deck-modal-error.visible { opacity: 1; }
-
-.deck-modal-input-wrap.shake {
-  animation: shake 0.4s var(--ease);
-  border-color: var(--error);
-}
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
-}
-
 /* ===================== EMAIL MODAL ===================== */
 .mail-modal { max-height: 92vh; overflow-y: auto; }
 .mail-form { display: flex; flex-direction: column; }
@@ -939,15 +885,14 @@ section[id] { scroll-margin-top: 4.5rem; }   /* anchors stop below the fixed nav
 
 /* Visible keyboard focus everywhere */
 :focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
-.btn-primary:focus-visible, .nav-link.nav-cta:focus-visible, .deck-modal-btn:focus-visible { outline-offset: 2px; box-shadow: 0 0 0 2px var(--white) inset; }
-.deck-modal-input:focus-visible { outline: none; }
-.deck-modal-input-wrap:focus-within, .mail-input:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+.btn-primary:focus-visible, .nav-link.nav-cta:focus-visible { outline-offset: 2px; box-shadow: 0 0 0 2px var(--white) inset; }
+.mail-input:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
 
 /* Tap targets of at least 44px */
 .deck-btn, .guide-btn { min-height: 44px; }
 .deck-modal-close { width: 44px; height: 44px; display: grid; place-items: center; top: 0.6rem; right: 0.6rem; }
 .footer-back { padding: 0.8rem 0; }
-.deck-modal-input, .mail-input { font-size: 1rem; }   /* 16px stops iPhones zooming in on focus */
+.mail-input { font-size: 1rem; }   /* 16px stops iPhones zooming in on focus */
 body.modal-open { overflow: hidden; }
 
 /* Crosshair cursor: only with a real mouse, and visible on light and dark */

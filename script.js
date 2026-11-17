@@ -7,8 +7,7 @@
      4. Nav: scrolled state + current section
      5. Mobile menu
      6. Modal helper (focus trap, Esc, scroll lock)
-     7. Pitch deck password modal
-     8. Email modal (sends through FormSubmit)
+     7. Email modal (sends through FormSubmit; also used by "Request Deck")
    ===================================================== */
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -159,57 +158,9 @@ function createModal(overlay, { onClose } = {}) {
   return { open, close };
 }
 
-/* ---- 7. PITCH DECK PASSWORD MODAL ---- */
-/* Note: the passwords live in index.html (data-password on each button),
-   so this keeps casual visitors out but is not real security. */
-(function initDeckModal() {
-  const overlay   = document.getElementById('deckModal');
-  const input     = document.getElementById('deckModalInput');
-  const errorMsg  = document.getElementById('deckModalError');
-  const titleEl   = document.getElementById('deckModalTitle');
-  const inputWrap = input.parentElement;
-
-  let currentDeck = '';
-  let currentPassword = '';
-
-  function reset() {
-    input.value = '';
-    errorMsg.classList.remove('visible');
-    inputWrap.classList.remove('shake');
-  }
-
-  const modal = createModal(overlay, { onClose: reset });
-
-  document.querySelectorAll('.deck-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentDeck     = btn.dataset.deck;
-      currentPassword = btn.dataset.password;
-      titleEl.textContent = btn.dataset.title;
-      reset();
-      modal.open(input, btn);
-    });
-  });
-
-  function checkPassword() {
-    if (input.value === currentPassword) {
-      modal.close();
-      window.open(currentDeck, '_blank');
-    } else {
-      inputWrap.classList.remove('shake');
-      void inputWrap.offsetWidth; // restart the shake animation
-      inputWrap.classList.add('shake');
-      errorMsg.classList.add('visible');
-      input.value = '';
-      input.focus();
-    }
-  }
-
-  document.getElementById('deckModalClose').addEventListener('click', modal.close);
-  document.getElementById('deckModalSubmit').addEventListener('click', checkPassword);
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
-})();
-
-/* ---- 8. EMAIL MODAL (sends through FormSubmit) ---- */
+/* ---- 7. EMAIL MODAL (sends through FormSubmit) ---- */
+/* The Email card and every "Request Deck" button open this form. Without
+   JavaScript they fall back to their mailto: links. */
 (function initMailModal() {
   const card    = document.getElementById('emailCard');
   const overlay = document.getElementById('mailModal');
@@ -227,10 +178,28 @@ function createModal(overlay, { onClose } = {}) {
     status.innerHTML = html;
   }
 
+  const titleEl   = document.getElementById('mailModalTitle');
+  const messageEl = document.getElementById('mailMessage');
+  const TITLE     = titleEl.textContent;
+  let deckMessage = '';   // the filled-in request, cleared if they open the plain Email form next
+
   card.addEventListener('click', e => {
     e.preventDefault();
+    titleEl.textContent = TITLE;
+    if (deckMessage && messageEl.value === deckMessage) messageEl.value = '';
     setStatus('', '');
     modal.open(document.getElementById('mailName'), card);
+  });
+
+  document.querySelectorAll('.deck-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      titleEl.textContent = 'Request the deck';
+      deckMessage = 'Hi Grace, could you send me your ' + btn.dataset.title + ' deck?';
+      messageEl.value = deckMessage;
+      setStatus('', '');
+      modal.open(document.getElementById('mailName'), btn);
+    });
   });
   document.getElementById('mailModalClose').addEventListener('click', modal.close);
 
