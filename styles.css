@@ -682,7 +682,7 @@ body.cursor-hover .cursor-dot { opacity: 0.4; }
   background: transparent;
   border: 1.5px solid var(--black);
   padding: 0.55rem 1rem;
-  margin-top: 1.2rem;
+  align-self: center;   /* line up with the numbers beside it */
   cursor: pointer;
   transition: all var(--t-mid) var(--ease);
 }
