@@ -414,7 +414,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 .about-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
 .about-right p { font-size: 0.95rem; color: var(--ink); margin-bottom: 1rem; line-height: 1.9; font-weight: 400; }
 
-.about-highlights { margin: 2.5rem 0; border-top: 1px solid var(--line-soft); }
+.about-highlights { margin: 2.5rem 0 0; border-top: 1px solid var(--line-soft); }
 .highlight-card {
   display: flex;
   align-items: center;
@@ -459,7 +459,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 /* ===================== EXPERIENCE ===================== */
 .experience { background: var(--white); border-top: 1.5px solid var(--black); border-bottom: 1.5px solid var(--black); }
 
-.section-header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+.section-header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; }   /* the title already has 2rem below it */
 
 .timeline { position: relative; padding-left: 160px; }
 .timeline::before {
@@ -511,7 +511,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   color: var(--black);
   border-top: 1.5px solid var(--black);
   padding-top: 1rem;
-  margin: 4.5rem 0 2.5rem;
+  margin: 3.5rem 0 2rem;
 }
 .tl-group:first-of-type { margin-top: 0; }
 .tl-group span, .tl-earlier > summary span { color: var(--grey); font-weight: 500; margin-left: 0.4rem; }
@@ -519,7 +519,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 .tl-earlier > summary::-webkit-details-marker { display: none; }
 .tl-earlier > summary::after { content: '+'; position: absolute; right: 0; font-size: 1.1rem; letter-spacing: 0; line-height: 1; }
 .tl-earlier[open] > summary::after { content: '–'; }
-.tl-earlier[open] > summary { margin-bottom: 2.5rem; }
+.tl-earlier[open] > summary { margin-bottom: 2rem; }
 
 /* ===================== PROJECTS ===================== */
 .projects { background: var(--white); }
@@ -528,7 +528,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  margin-top: 3.5rem;
+  margin-top: 2.25rem;
   background: var(--black);
   border: 1.5px solid var(--black);
 }
