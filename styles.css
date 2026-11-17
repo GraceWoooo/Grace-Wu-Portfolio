@@ -407,7 +407,6 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   letter-spacing: -0.02em;
   margin-bottom: 2rem;
 }
-.section-title em { font-style: italic; font-weight: 400; color: var(--black); }
 
 /* ===================== ABOUT ===================== */
 .about { background: var(--white); }
