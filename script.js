@@ -22,7 +22,7 @@ setTimeout(() => {
   loader.classList.add('done');
   document.body.style.overflow = '';
   initReveal();
-}, reduceMotion ? 0 : 800);
+}, reduceMotion ? 0 : 600);
 
 /* ---- 2. SCROLL REVEAL ---- */
 function initReveal() {
