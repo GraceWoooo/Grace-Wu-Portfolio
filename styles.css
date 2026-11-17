@@ -660,12 +660,21 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   .timeline-left { position: static; width: auto; text-align: left; padding-right: 0; margin-bottom: 0.4rem; }
   .tl-dot { display: none; }
   .projects-grid { grid-template-columns: 1fr; }
-  .project-featured { grid-template-columns: 1fr; }
-  .project-visual { display: none; }
+  .project-featured { grid-template-columns: 1fr; }  .project-visual { display: none; }
   .skill-row { grid-template-columns: 1fr; gap: 0.9rem; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
   .hero-scroll-cue { display: none; }
   .stat-value { font-size: 2.2rem; }
+}
+
+/* Small phones: keep the hero labels from breaking mid-phrase */
+@media (max-width: 480px) {
+  .hero-badge { align-items: flex-start; }
+  .badge-dot { margin-top: 0.45rem; }                  /* centre on the first line */
+  .badge-sep { display: none; }
+  .badge-year { display: block; }                      /* "Class of 2029" on its own line */
+  .descriptor-divider { display: none; }               /* lets "Consulting · Strategy · Finance" fit on one line */
+  .hero-actions .btn { flex: 1 1 100%; justify-content: center; }   /* two buttons, same width */
 }
 
 /* ===================== DECK MODAL ===================== */
