@@ -239,6 +239,9 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   z-index: 0;
 }
 
+/* Headshot on phones: a full-width band under the nav with an angled bottom edge (shown in the 768px block) */
+.hero-photo { display: none; }
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -654,7 +657,19 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   .section { padding: 4.5rem 0; }
   .hero { height: auto; min-height: 100vh; min-height: 100svh; }   /* grow instead of clipping the stats */
   .hero::before { display: none; }
-  .hero-content { padding-top: 5rem; }   /* side padding comes from .container, so it lines up with the logo */
+  .hero { flex-direction: column; align-items: stretch; }
+  .hero-photo {
+    display: block;
+    height: calc(5.75rem + 58vw);   /* room for the nav, then the photo */
+    max-height: 520px;
+    background-image:
+      linear-gradient(to bottom, var(--wash) 0%, var(--wash-clear) 30%),
+      url('headshot-wide.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);   /* same angle idea as the desktop panel */
+  }
+  .hero-content { padding-top: 1.5rem; }   /* side padding comes from .container, so it lines up with the logo */
   .timeline { padding-left: 0; }
   .timeline::before { display: none; }
   .timeline-left { position: static; width: auto; text-align: left; padding-right: 0; margin-bottom: 0.4rem; }
