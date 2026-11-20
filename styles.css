@@ -199,7 +199,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 }
 .brand-name {
   font-family: var(--f-display);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--black);
   letter-spacing: 0.05em;
@@ -391,7 +391,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   white-space: nowrap;
   display: block;
   font-family: var(--f-display);
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 600;
   color: var(--black);
   line-height: 1;
@@ -448,9 +448,9 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 }
 .section-title {
   font-family: var(--f-display);
-  font-size: clamp(2.6rem, 4.6vw, 4rem);
+  font-size: clamp(2.75rem, 5.4vw, 4.75rem);   /* 44px on phones, 76px on wide screens */
   font-weight: 500;
-  line-height: 1.02;
+  line-height: 1;
   color: var(--black);
   letter-spacing: -0.02em;
   margin-bottom: 2rem;
@@ -498,10 +498,10 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   gap: 1rem;
   max-width: 90%;
 }
-.edu-info h3 { font-family: var(--f-display); font-size: 1.15rem; font-weight: 600; color: var(--black); margin-bottom: 0.5rem; }
+.edu-info h3 { font-family: var(--f-display); font-size: 1.4rem; font-weight: 600; color: var(--black); margin-bottom: 0.5rem; }
 .edu-info p { font-size: var(--t-body-s); color: var(--ink); margin: 0.28rem 0; font-weight: 400; }
 .edu-info .edu-dates { color: var(--grey); font-size: var(--t-small); margin-top: 0.6rem; }
-.edu-gpa { align-self: flex-end; font-family: var(--f-display); font-size: 2.2rem; font-weight: 600; color: var(--black); flex-shrink: 0; letter-spacing: -0.02em; font-feature-settings: var(--nums); }
+.edu-gpa { align-self: flex-end; font-family: var(--f-display); font-size: 2.4rem; font-weight: 600; color: var(--black); flex-shrink: 0; letter-spacing: -0.02em; font-feature-settings: var(--nums); }
 
 /* ===================== EXPERIENCE ===================== */
 .experience { background: var(--white); border-top: 1.5px solid var(--black); border-bottom: 1.5px solid var(--black); }
@@ -540,7 +540,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 .timeline-item:hover .tl-dot { background: var(--black); border-color: var(--black); }
 
 .tl-org { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); margin-bottom: 0.35rem; }
-.tl-role { font-family: var(--f-display); font-size: 1.35rem; font-weight: 600; color: var(--black); margin-bottom: 0.9rem; letter-spacing: -0.01em; }
+.tl-role { font-family: var(--f-display); font-size: 1.6rem; line-height: 1.2; font-weight: 600; color: var(--black); margin-bottom: 0.9rem; letter-spacing: -0.01em; }
 .tl-bullets { list-style: none; margin-bottom: 1rem; }
 .tl-bullets li { font-size: var(--t-body-s); color: var(--ink); padding: 0.2rem 0 0.2rem 1rem; position: relative; line-height: 1.75; font-weight: 400; }
 .tl-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--black); }
@@ -599,13 +599,13 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 .project-badge { font-size: var(--t-label); font-weight: 500; padding: 0.22rem 0.75rem; letter-spacing: 0.06em; }
 .project-badge-win { background: var(--black); border: 1.5px solid var(--black); color: var(--white); }
 
-.project-title { font-family: var(--f-display); font-size: 1.55rem; font-weight: 600; color: var(--black); margin-bottom: 0.9rem; letter-spacing: -0.01em; line-height: 1.15; }
-.project-featured .project-title { font-size: 2rem; }
+.project-title { font-family: var(--f-display); font-size: 1.8rem; font-weight: 600; color: var(--black); margin-bottom: 0.9rem; letter-spacing: -0.01em; line-height: 1.15; }
+.project-featured .project-title { font-size: 2.4rem; }
 
 .project-desc { font-size: var(--t-body-s); color: var(--ink); line-height: 1.85; margin-bottom: 1.5rem; font-weight: 400; }
 
 .project-metrics { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 1.2rem; border-top: 1px solid var(--black); }
-.metric-val { display: block; font-family: var(--f-display); font-size: 1.5rem; font-weight: 600; color: var(--black); line-height: 1; letter-spacing: -0.02em; font-feature-settings: var(--nums); }
+.metric-val { display: block; font-family: var(--f-display); font-size: 1.85rem; font-weight: 600; color: var(--black); line-height: 1; letter-spacing: -0.02em; font-feature-settings: var(--nums); }
 .metric-lbl { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); margin-top: 0.3rem; display: block; }
 .metric-link { text-decoration: none; transition: opacity var(--t-fast); }
 .metric-link:hover { opacity: 0.5; }
@@ -733,7 +733,10 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   .skill-row { grid-template-columns: 1fr; gap: 0.9rem; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
   .hero-scroll-cue { display: none; }
-  .stat-value { font-size: 2.2rem; }
+  .stat-value { font-size: 2.5rem; }
+  .hero-headline { font-size: clamp(4.5rem, 22vw, 6.5rem); }   /* "Grace Wu." fills the phone width under the photo */
+  .project-title { font-size: 1.6rem; }
+  .project-featured .project-title { font-size: 1.9rem; }
 }
 
 /* Small phones: keep the hero labels from breaking mid-phrase */
