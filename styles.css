@@ -988,6 +988,9 @@ body.modal-open { overflow: hidden; }
   .js body, .js a, .js button, .js summary, .js .btn { cursor: none; }
   .js .cursor-dot { display: block; mix-blend-mode: difference; opacity: 0; }   /* hidden until the mouse moves */
   .js .cursor-dot.visible { opacity: 1; }
+  /* In text fields: the normal typing cursor, no crosshair */
+  .js input, .js textarea { cursor: text; }
+  body.cursor-text .cursor-dot.visible { opacity: 0; }
 }
 
 /* People who ask for less motion get none */

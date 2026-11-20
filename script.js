@@ -77,6 +77,11 @@ if (cursorDot && window.matchMedia('(hover: hover) and (pointer: fine)').matches
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
+  // Text fields show the normal typing cursor instead
+  document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text'));
+  });
 }
 
 /* ---- 4. NAV: SCROLLED STATE + CURRENT SECTION ---- */
