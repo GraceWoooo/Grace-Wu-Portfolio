@@ -508,11 +508,11 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 
 .section-header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; }   /* the title already has 2rem below it */
 
-.timeline { position: relative; padding-left: 160px; }
+.timeline { position: relative; padding-left: 180px; }
 .timeline::before {
   content: '';
   position: absolute;
-  left: 140px; top: 8px; bottom: 8px;
+  left: 160px; top: 8px; bottom: 8px;
   width: 1px;
   background: var(--black);
 }
@@ -521,8 +521,8 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 
 .timeline-left {
   position: absolute;
-  left: -160px;
-  width: 130px;
+  left: -180px;
+  width: 150px;
   text-align: right;
   padding-right: 1.5rem;
   padding-top: 0.15rem;
@@ -541,7 +541,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 
 .tl-org { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); margin-bottom: 0.35rem; }
 .tl-role { font-family: var(--f-display); font-size: 1.6rem; line-height: 1.2; font-weight: 600; color: var(--black); margin-bottom: 0.9rem; letter-spacing: -0.01em; }
-.tl-bullets { list-style: none; margin-bottom: 1rem; }
+.tl-bullets { list-style: none; margin-bottom: 1rem; max-width: 33rem; }   /* about 70 characters a line */
 .tl-bullets li { font-size: var(--t-body-s); color: var(--ink); padding: 0.2rem 0 0.2rem 1rem; position: relative; line-height: 1.75; font-weight: 400; }
 .tl-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--black); }
 .tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -696,9 +696,6 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 @media (max-width: 1024px) {
   .about-layout, .skills-layout, .contact-layout { grid-template-columns: 1fr; gap: 4rem; }
   .skills-left { position: static; }
-  .timeline { padding-left: 160px; }
-  .timeline::before { left: 132px; }
-  .timeline-left { left: -160px; width: 140px; }
 }
 
 @media (max-width: 768px) {
