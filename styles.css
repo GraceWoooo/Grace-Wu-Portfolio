@@ -482,9 +482,10 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   gap: 1.2rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--line-soft);
-  transition: padding-left var(--t-mid) var(--ease);
 }
-.highlight-card:hover { padding-left: 0.5rem; }
+/* Hover slide uses transform (smooth) rather than padding (redraws the layout) */
+.highlight-card > * { transition: transform var(--t-mid) var(--ease); }
+.highlight-card:hover > * { transform: translateX(0.5rem); }
 .highlight-icon { width: 34px; height: 34px; flex-shrink: 0; display: grid; place-items: center; color: var(--grey); }
 .highlight-card h3 { font-size: var(--t-body-s); font-weight: 600; color: var(--black); margin-bottom: 0.1rem; }
 .highlight-card p { font-size: var(--t-small); color: var(--grey); margin: 0; }
@@ -692,10 +693,10 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   gap: 1.2rem;
   padding: 1.3rem 0;
   border-bottom: 1px solid var(--line-soft);
-  transition: padding-left var(--t-mid) var(--ease);
 }
-.contact-card:hover { padding-left: 0.6rem; }
-.contact-card-icon { width: 38px; height: 38px; flex-shrink: 0; display: grid; place-items: center; color: var(--grey); transition: color var(--t-mid); }
+.contact-card-icon, .contact-card-text { transition: transform var(--t-mid) var(--ease); }
+.contact-card:hover .contact-card-icon, .contact-card:hover .contact-card-text { transform: translateX(0.6rem); }
+.contact-card-icon { width: 38px; height: 38px; flex-shrink: 0; display: grid; place-items: center; color: var(--grey); transition: color var(--t-mid), transform var(--t-mid) var(--ease); }
 .contact-card:hover .contact-card-icon { color: var(--black); }
 .contact-card-text { flex: 1; }
 .contact-card-label { display: block; font-size: var(--t-label); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); margin-bottom: 0.2rem; }
