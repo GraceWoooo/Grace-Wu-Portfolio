@@ -32,16 +32,19 @@ function initReveal() {
     el.innerHTML = `<span class="reveal-line-inner">${el.innerHTML}</span>`;
   });
 
+  // Things that come into view together arrive in order, 80ms apart
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
+    entries
+      .filter(e => e.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+      .forEach((e, i) => {
+        e.target.style.setProperty('--delay', Math.min(i, 5) * 0.08 + 's');
         e.target.classList.add('in-view');
         obs.unobserve(e.target);
-      }
-    });
+      });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  revealEls.forEach(el => obs.observe(el));
+  revealEls.forEach(el => { if (!el.closest('.hero')) obs.observe(el); });   // the hero runs its own sequence below
 
   // Hero elements show straight away
   requestAnimationFrame(() => {
