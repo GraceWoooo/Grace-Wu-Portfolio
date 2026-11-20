@@ -2,7 +2,8 @@
    GRACE WU — PORTFOLIO
    ===================================================== */
 
-/* ---- FONTS (hosted here, Latin only; preloaded in index.html) ---- */
+/* ---- FONTS (hosted here, Latin only). Not preloaded: on slow phones that
+   held up the first paint. The matched stand-ins below cover the swap. ---- */
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;
