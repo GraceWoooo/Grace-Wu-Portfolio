@@ -385,12 +385,12 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 
 .hero-stats {
   display: grid;
-  grid-template-columns: repeat(4, auto);   /* four stats in one row */
-  gap: 0 2.2rem;
+  grid-template-columns: repeat(4, max-content);   /* four stats in one row */
+  gap: 0 clamp(1.5rem, 3vw, 2.75rem);
   align-items: start;
   padding-top: 2rem;
   border-top: 1px solid var(--black);
-  max-width: 640px;
+  width: fit-content;   /* the rule above ends with the last stat */
 }
 .stat-value {
   white-space: nowrap;
@@ -404,16 +404,17 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   font-feature-settings: var(--nums);
 }
 .stat-label {
-  max-width: 9.5em;
+  max-width: 9em;   /* every label takes two lines, breaking at the "·" */
   line-height: 1.5;
   font-size: var(--t-label);
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--grey);
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   display: block;
 }
+.stat-label span { white-space: nowrap; }   /* lines only break after a "·" */
 .hero-scroll-cue {
   position: absolute;
   bottom: 2rem; right: 3rem;
@@ -733,7 +734,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   .project-card-inner, .project-featured .project-card-inner { padding: 2rem 1.5rem; }   /* desktop padding left the text 210px wide */
   .project-visual { display: none; }
   .skill-row { grid-template-columns: 1fr; gap: 0.9rem; }
-  .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
+  .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; width: auto; }
   .hero-scroll-cue { display: none; }
   .stat-value { font-size: 2.5rem; }
   .hero-headline { font-size: clamp(4.5rem, 22vw, 6.5rem); }   /* "Grace Wu." fills the phone width under the photo */
