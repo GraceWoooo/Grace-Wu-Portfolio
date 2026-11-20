@@ -653,7 +653,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 .language-grid { display: flex; flex-direction: column; gap: 0.85rem; }
 .lang-item { display: grid; grid-template-columns: 76px 1fr 52px; align-items: center; gap: 0.7rem; }
 .lang-name { font-size: var(--t-small); color: var(--black); font-weight: 500; }
-.lang-bar { height: 1.5px; background: var(--line); overflow: hidden; }
+.lang-bar { height: 2px; background: var(--line); overflow: hidden; }   /* whole pixels, so every bar renders the same thickness */
 .lang-fill { height: 100%; background: var(--black); transition: width 1.4s var(--ease); }
 .lang-level { font-size: var(--t-small); color: var(--grey); letter-spacing: 0.08em; text-align: right; font-weight: 500; }
 
