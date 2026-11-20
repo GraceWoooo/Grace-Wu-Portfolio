@@ -13,15 +13,21 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---- 1. LOADER ---- */
-/* Shows "GW" briefly, then reveals the page. It no longer waits for
-   every image to finish downloading. */
+/* Shows "GW" briefly on the first visit of a browser session, then
+   reveals the page. Later page loads in the same session skip it (the
+   "seen" class is set in the <head> of index.html). */
 const loader = document.getElementById('loader');
-document.body.style.overflow = 'hidden';
-setTimeout(() => {
-  loader.classList.add('done');
-  document.body.style.overflow = '';
+if (document.documentElement.classList.contains('seen')) {
   initReveal();
-}, reduceMotion ? 0 : 600);
+} else {
+  try { sessionStorage.setItem('gw-intro', '1'); } catch (e) {}
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    loader.classList.add('done');
+    document.body.style.overflow = '';
+    initReveal();
+  }, reduceMotion ? 0 : 600);
+}
 
 /* ---- 2. SCROLL REVEAL ---- */
 function initReveal() {

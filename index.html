@@ -31,7 +31,10 @@
   <link rel="preload" href="headshot.webp" as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
   <link rel="preload" href="headshot-wide.webp" as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    document.documentElement.classList.add('js');
+    try { if (sessionStorage.getItem('gw-intro')) document.documentElement.classList.add('seen'); } catch (e) {}   // loader already shown this session
+  </script>
 </head>
 <body>
 
