@@ -626,7 +626,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 
 .skills-layout { display: grid; grid-template-columns: 1fr 1.8fr; gap: 7rem; align-items: start; }
 .skills-left { position: sticky; top: 7rem; }
-.skills-intro { font-size: var(--t-body); color: var(--ink); line-height: 1.9; margin-bottom: 2.5rem; font-weight: 400; }
+.skills-intro { font-size: var(--t-body); color: var(--ink); line-height: 1.9; margin-bottom: 2.5rem; font-weight: 400; margin-top: -0.35rem; }   /* top lines up with the rule on the right */
 
 .cert-label { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey); margin-bottom: 0.75rem; display: block; }
 .cert-item { display: flex; align-items: center; gap: 0.8rem; font-size: var(--t-body-s); color: var(--ink); padding: 0.5rem 0; border-bottom: 1px solid var(--line-soft); font-weight: 400; }
