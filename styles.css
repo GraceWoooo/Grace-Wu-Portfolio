@@ -271,9 +271,12 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   position: absolute;
   top: 0; right: 0;
   width: 38vw; height: 100%;
-  background-image: 
+  background-image:
     linear-gradient(to bottom, var(--wash) 0%, var(--wash-clear) 20%),
     url('headshot.jpg');
+  background-image:   /* WebP where supported (preloaded in index.html) */
+    linear-gradient(to bottom, var(--wash) 0%, var(--wash-clear) 20%),
+    image-set(url('headshot.webp') type('image/webp'), url('headshot.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center 30%;
   clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
@@ -606,6 +609,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 
 .project-visual { display: flex; align-items: center; justify-content: center; background: var(--line-soft); min-height: 200px; }
 .project-visual-blue { background: var(--white); }
+.project-visual picture { display: contents; }   /* the img stays the flex child */
 .project-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
 /* ===================== SKILLS ===================== */
@@ -706,6 +710,9 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
     background-image:
       linear-gradient(to bottom, var(--wash) 0%, var(--wash-clear) 30%),
       url('headshot-wide.jpg');
+    background-image:
+      linear-gradient(to bottom, var(--wash) 0%, var(--wash-clear) 30%),
+      image-set(url('headshot-wide.webp') type('image/webp'), url('headshot-wide.jpg') type('image/jpeg'));
     background-size: cover;
     background-position: center 20%;
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);   /* same angle idea as the desktop panel */
