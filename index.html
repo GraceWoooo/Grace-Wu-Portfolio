@@ -44,10 +44,10 @@
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- The headshot is the first big thing on screen: fetch the right one early -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- The headshot is the first big thing on screen: fetch the right one early, right after the stylesheet -->
   <link rel="preload" href="headshot.webp" as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
   <link rel="preload" href="headshot-wide.webp" as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
