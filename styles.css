@@ -95,7 +95,7 @@ a { color: inherit; text-decoration: none; }
 /* Line breaks: headings split into even lines; paragraphs avoid a lone last word */
 main h1, main h2, main h3, main h4 { text-wrap: balance; }
 main p, main li { text-wrap: pretty; }
-body { font-kerning: normal; }
+body { font-kerning: normal; -webkit-tap-highlight-color: transparent; }   /* no blue flash on tap; focus rings still show */
 ul { list-style: none; }
 
 .container      { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
@@ -814,7 +814,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 }
 .deck-modal {
   background: var(--white);
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--black);
   padding: 3rem;
   max-width: 440px;
   width: 90%;
@@ -847,8 +847,9 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 }
 .deck-modal-title {
   font-family: var(--f-display);
-  font-size: 1.6rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.1;
   color: var(--black);
   letter-spacing: -0.01em;
   margin-bottom: 0.5rem;
@@ -882,7 +883,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   outline: none;
   transition: border-color var(--t-fast);
 }
-.mail-input:focus { border-color: var(--black); }
+.mail-input:focus { border-color: var(--black); box-shadow: inset 0 0 0 1px var(--black); }   /* one clean 2px black edge */
 .mail-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
 .mail-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .mail-send { align-self: flex-start; margin-top: 1.5rem; }
@@ -918,7 +919,10 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   .hamburger { display: flex; }
   .nav-brand { position: relative; z-index: 2; }
   .nav-links {
-    display: none;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;   /* also keeps hidden links out of the Tab order */
+    transition: opacity 0.35s var(--ease), visibility 0.35s;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100vh; height: 100dvh;
@@ -929,7 +933,14 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
     gap: 1.6rem;
     z-index: 1;
   }
-  .menu-open .nav-links { display: flex; }
+  .menu-open .nav-links { opacity: 1; visibility: visible; }
+  /* Links rise into place one after another */
+  .nav-links li { transform: translateY(12px); transition: transform 0.5s var(--ease); }
+  .menu-open .nav-links li { transform: none; }
+  .menu-open .nav-links li:nth-child(2) { transition-delay: 0.04s; }
+  .menu-open .nav-links li:nth-child(3) { transition-delay: 0.08s; }
+  .menu-open .nav-links li:nth-child(4) { transition-delay: 0.12s; }
+  .menu-open .nav-links li:nth-child(5) { transition-delay: 0.16s; }
   .menu-open .header { background: var(--white); backdrop-filter: none; border-bottom-color: transparent; }
   .nav-links .nav-link, .nav-links .nav-link.nav-cta {
     font-family: var(--f-display);
@@ -963,7 +974,7 @@ section[id] { scroll-margin-top: 4.5rem; }   /* anchors stop below the fixed nav
 /* Visible keyboard focus everywhere */
 :focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
 .btn-primary:focus-visible, .nav-link.nav-cta:focus-visible { outline-offset: 2px; box-shadow: 0 0 0 2px var(--white) inset; }
-.mail-input:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+.mail-input:focus-visible { outline: none; }   /* the 2px black border above is the focus ring */
 
 /* Tap targets of at least 44px */
 .deck-btn, .guide-btn { min-height: 44px; }
