@@ -600,7 +600,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 .project-featured:hover { background: var(--hover); }
 .project-featured .project-card-inner { padding: 3rem; }
 
-.project-number { font-family: var(--f-display); font-size: 0.7rem; font-weight: 400; color: var(--grey); letter-spacing: 0.15em; margin-bottom: 1.2rem; font-feature-settings: var(--nums); }
+.project-number { font-family: var(--f-display); font-size: 1.35rem; font-weight: 500; line-height: 1; color: var(--black); letter-spacing: 0.04em; margin-bottom: 1.4rem; font-feature-settings: var(--nums); }
 .project-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; }
 .project-category { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey); }
 .project-category span { white-space: nowrap; }   /* lines only break after a "·", never inside a phrase */
@@ -612,8 +612,11 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
 
 .project-desc { font-size: var(--t-body-s); color: var(--ink); line-height: 1.85; margin-bottom: 1.5rem; font-weight: 400; }
 
-.project-metrics { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 1.2rem; border-top: 1px solid var(--black); }
-.metric-val { display: block; font-family: var(--f-display); font-size: 1.85rem; font-weight: 600; color: var(--black); line-height: 1; letter-spacing: -0.02em; font-feature-settings: var(--nums); }
+/* Numbers sit in equal columns on one row; the deck/guide button gets its own row below */
+.project-metrics { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--black); }
+.project-featured .project-metrics { max-width: 34rem; }
+.project-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; }
+.metric-val { white-space: nowrap; display: block; font-family: var(--f-display); font-size: 1.85rem; font-weight: 600; color: var(--black); line-height: 1; letter-spacing: -0.02em; font-feature-settings: var(--nums); }
 .metric-lbl { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); margin-top: 0.3rem; display: block; }
 .metric-link { text-decoration: none; transition: opacity var(--t-fast); }
 .metric-link:hover { opacity: 0.5; }
@@ -706,6 +709,11 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   .skills-left { position: static; }
 }
 
+/* Narrower screens: the half-width project cards put their numbers in two columns */
+@media (max-width: 1180px) {
+  .project-card:not(.project-featured) .project-metrics { grid-auto-flow: row; grid-template-columns: 1fr 1fr; gap: 1.25rem 1.5rem; }
+}
+
 @media (max-width: 768px) {
   :root { --space-xl: 4.5rem; }
   .section { padding: 4.5rem 0; }
@@ -735,6 +743,7 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   .project-featured { grid-template-columns: 1fr; }
   .project-card-inner, .project-featured .project-card-inner { padding: 2rem 1.5rem; }   /* desktop padding left the text 210px wide */
   .project-visual { display: none; }
+  .project-metrics { grid-auto-flow: row; grid-template-columns: 1fr 1fr; gap: 1.25rem 1.5rem; }
   .skill-row { grid-template-columns: 1fr; gap: 0.9rem; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; width: auto; }
   .hero-scroll-cue { display: none; }
@@ -770,7 +779,6 @@ body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }  
   background: transparent;
   border: 1.5px solid var(--black);
   padding: 0.55rem 1rem;
-  align-self: center;   /* line up with the numbers beside it */
   cursor: pointer;
   transition: all var(--t-mid) var(--ease);
 }
